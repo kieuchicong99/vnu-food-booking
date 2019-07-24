@@ -40,8 +40,8 @@ app.post('/webhook', (req, res) => {
         // pass the event to the appropriate handler function
         if (webhook_event.message) {
           handleMessage(sender_psid, webhook_event.message);
-        } else if (webhook_event.postback) {
-          handlePostback(sender_psid, webhook_event.postback);
+        } else if (entry.messaging[0].postback) {
+          handlePostback(sender_psid, entry.messaging[0].postback);
         }
       } catch (error) {
         console.log('--->error:', error);
