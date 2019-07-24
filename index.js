@@ -83,7 +83,7 @@ function handleMessage(sender_id, message) {
   let response;
 
   // Check if the message contains text
-  if (received_message.text) {    
+  if (message.text) {    
 
     // Create the payload for a basic text message
     response = {
