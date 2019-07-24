@@ -91,6 +91,34 @@ app.get('/webhook', (req, res) => {
       res.sendStatus(403);
     }
   }
+
+  let response = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "list",
+        "elements": [{
+          "title": "Is this the right picture?",
+          "subtitle": "Tap a button to answer.",
+          "image_url": "https://scontent.xx.fbcdn.net/v/t1.15752-9/67353639_333603524250258_9083225823762186240_n.png?_nc_cat=101&_nc_oc=AQnf6K0pLZyz9mLHAsW2qjim6a5_pO7jhskWtiIztALzK24_eAFn6lG0liaeg7UN7By5Kd7TcIRVxXK-AnyCpWJE&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=ed6e5848e33367a01d65f7e9fc3f2301&oe=5DEA6FB1",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "Yes!",
+              "payload": "yes",
+            },
+            {
+              "type": "postback",
+              "title": "No!",
+              "payload": "no",
+            }
+          ],
+        }]
+      }
+    }
+  }
+  callSendAPI(sender_psid, response);
+
 });
 
 // Handles messages events
@@ -112,7 +140,7 @@ function handleMessage(sender_psid, received_message) {
       "attachment": {
         "type": "template",
         "payload": {
-          "template_type": "generic",
+          "template_type": "list",
           "elements": [{
             "title": "Is this the right picture?",
             "subtitle": "Tap a button to answer.",
