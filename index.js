@@ -25,50 +25,26 @@ app.post('/webhook', (req, res) => {
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function (entry) {
 
-      // Gets the message. entry.messaging is an array, but 
-      // will only ever contain one message, so we get index 0
-      // try {
-      //   console.log("VNU-ENTRY:", entry);
-      //   let message = entry.standby[0].message.text;
-      //   let sender_id = entry.standby[0].sender.id;
-      //   console.log("entry.standby[0]", JSON.stringify(entry.standby[0]));
-      //   console.log("VNU-MES:", message);
+      try {
 
+        // Gets the body of the webhook event
+        let webhook_event = entry.standby[0];
+        console.log('--->entry:', JSON.stringify(entry));
 
-      //   let sender_psid = webhook_event.sender.id;
+        // Get the sender PSID
+        let sender_psid = webhook_event.sender.id;
+        console.log('Sender PSID: ' + sender_psid);
 
-
-      //   let attachments = entry.standby[0].message.attachments;
-
-      //     handleMessage(sender_id, message,attachments);
-
-      //     if (webhook_event.message) {
-      //       handleMessage(sender_psid, webhook_event.message);        
-      //     } else if (webhook_event.postback) {
-      //       handlePostback(sender_psid, webhook_event.postback);
-      //     }
-
-      // } catch (error) {
-      //   console.log("VNU-ERROR:", error);
-      // }
-
-      // Gets the body of the webhook event
-      let webhook_event = entry.standby[0];
-      console.log(webhook_event);
-
-
-      // Get the sender PSID
-      let sender_psid = webhook_event.sender.id;
-      console.log('Sender PSID: ' + sender_psid);
-
-      // Check if the event is a message or postback and
-      // pass the event to the appropriate handler function
-      if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);
-      } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
+        // Check if the event is a message or postback and
+        // pass the event to the appropriate handler function
+        if (webhook_event.message) {
+          handleMessage(sender_psid, webhook_event.message);
+        } else if (webhook_event.postback) {
+          handlePostback(sender_psid, webhook_event.postback);
+        }
+      } catch (error) {
+        console.log('--->error:', error);
       }
-
 
     });
 
@@ -121,7 +97,7 @@ function handleMessage(sender_psid, received_message) {
       "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
   } else if (received_message.attachments) {
-    
+
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -193,7 +169,7 @@ function callSendAPI(sender_psid, response) {
     } else {
       console.error("Unable to send message:" + err);
     }
-  }); 
+  });
 }
 
 setInterval(() => server.getConnections(
