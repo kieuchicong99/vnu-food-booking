@@ -22,8 +22,14 @@ app.post('/webhook', (req, res) => {
 
       // Gets the message. entry.messaging is an array, but 
       // will only ever contain one message, so we get index 0
-      let webhook_event = entry.messaging[0];
-      console.log(webhook_event);
+      try {
+        console.log("VNU-ENTRY:",entry);
+        let webhook_event = entry.messaging[0];
+        console.log(webhook_event);
+      } catch (error) {
+        console.log("VNU-ERROR:",error);        
+      }
+     
     });
 
     // Returns a '200 OK' response to all requests
