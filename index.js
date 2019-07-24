@@ -24,7 +24,7 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       try {
         console.log("VNU-ENTRY:",entry);
-        let webhook_event = entry.standby.message[0];
+        let webhook_event = entry.standby[0].message[0];
         console.log("VNU-MES:",webhook_event);
       } catch (error) {
         console.log("VNU-ERROR:",error);        
