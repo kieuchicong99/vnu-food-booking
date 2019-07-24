@@ -30,7 +30,7 @@ app.post('/webhook', (req, res) => {
         // Gets the body of the webhook event
 
         console.log('--->entry:', JSON.stringify(entry));
-        console.log('--->body:',JSON.stringify(body))
+        console.log('--->body:', JSON.stringify(body))
         let webhook_event;
         if (entry.messaging == undefined) {
           webhook_event = entry.standby[0];
@@ -95,18 +95,6 @@ app.get('/webhook', (req, res) => {
 
 });
 
-function getStarted() {
-  var greet = {
-    "greeting": [
-      {
-        "locale": "default",
-        "text": "Hello {{user_first_name}}!"
-      }
-    ]
-  }
-
-  callAPI(greet);
-}
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
@@ -162,8 +150,34 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Thanks!" }
-  } else if (payload === 'no') {
+  }
+  if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
+  }
+  if (payload === 'start') {
+    response = {
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Chào mừng {{user_first_name}} đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
+            "image_url": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi5n9Xur83jAhUIEHwKHSdmD4QQjRx6BAgBEAU&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Froom-service_227324&psig=AOvVaw0DmnevctHWavHw7RpMd_XA&ust=1564051430166250",
+            "buttons": [{
+              "type": "postback",
+              "title": "Chọn món ăn",
+              "payload": "choose_dish",
+              },
+              {
+                "type": "postback",
+                "title": "Chọn cửa hàng",
+                "payload": "choose_store",
+                },
+
+            ]
+          }
+        ]
+      }
+    }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
