@@ -27,12 +27,16 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       try {
         console.log("VNU-ENTRY:", entry);
-        let webhook_event = entry.standby[0].message.text;
+        let message = entry.standby[0].message.text;
+        let sender_id = entry.standby[0].sender.id;
         console.log("entry.standby[0]",JSON.stringify(entry.standby[0]));
-        console.log("VNU-MES:", webhook_event);
+        console.log("VNU-MES:", message);
+
+        handleMessage(sender_id, message); 
       } catch (error) {
         console.log("VNU-ERROR:", error);
       }
+      
 
     });
 
@@ -75,7 +79,7 @@ app.get('/webhook', (req, res) => {
 });
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_id, message) {
   let response;
 
   // Check if the message contains text
@@ -83,12 +87,12 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "text": `You sent the message: "${message}"`
     }
   }  
   
   // Sends the response message
-  callSendAPI(sender_psid, response);    
+  callSendAPI(sender_id, response);    
 
 }
 
@@ -105,6 +109,19 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
+  // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": "https://graph.facebook.com/v3.3/me/messages",
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
   
 }
 
