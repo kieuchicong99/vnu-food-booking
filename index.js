@@ -1,14 +1,15 @@
 'use strict';
 
 // Imports dependencies and set up http server
-const  request = require('request');
-const PAGE_ACCESS_TOKEN = 'EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD'
-const  express = require('express'),
+const request = require('request'),
+  PAGE_ACCESS_TOKEN = 'EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD',
+  express = require('express'),
   bodyParser = require('body-parser'),
-  // app = express().use(bodyParser.json()); // creates express http server
-  app = express();
-  app.use(bodyParser.urlencoded({ "extended": false }));
-  app.use(bodyParser.json());
+  app = express(),
+  VERIFY_TOKEN = 'kieuchicong'
+
+app.use(bodyParser.urlencoded({ "extended": false }));
+app.use(bodyParser.json());
 
 // Sets server port and logs message on success
 const server = app.listen(process.env.PORT || 9000, () => console.log('webhook is listening'));
@@ -26,18 +27,48 @@ app.post('/webhook', (req, res) => {
 
       // Gets the message. entry.messaging is an array, but 
       // will only ever contain one message, so we get index 0
-      try {
-        console.log("VNU-ENTRY:", entry);
-        let message = entry.standby[0].message.text;
-        let sender_id = entry.standby[0].sender.id;
-        console.log("entry.standby[0]",JSON.stringify(entry.standby[0]));
-        console.log("VNU-MES:", message);
+      // try {
+      //   console.log("VNU-ENTRY:", entry);
+      //   let message = entry.standby[0].message.text;
+      //   let sender_id = entry.standby[0].sender.id;
+      //   console.log("entry.standby[0]", JSON.stringify(entry.standby[0]));
+      //   console.log("VNU-MES:", message);
 
-        handleMessage(sender_id, message); 
-      } catch (error) {
-        console.log("VNU-ERROR:", error);
+
+      //   let sender_psid = webhook_event.sender.id;
+
+
+      //   let attachments = entry.standby[0].message.attachments;
+
+      //     handleMessage(sender_id, message,attachments);
+
+      //     if (webhook_event.message) {
+      //       handleMessage(sender_psid, webhook_event.message);        
+      //     } else if (webhook_event.postback) {
+      //       handlePostback(sender_psid, webhook_event.postback);
+      //     }
+
+      // } catch (error) {
+      //   console.log("VNU-ERROR:", error);
+      // }
+
+      // Gets the body of the webhook event
+      let webhook_event = entry.standby[0];
+      console.log(webhook_event);
+
+
+      // Get the sender PSID
+      let sender_psid = webhook_event.sender.id;
+      console.log('Sender PSID: ' + sender_psid);
+
+      // Check if the event is a message or postback and
+      // pass the event to the appropriate handler function
+      if (webhook_event.message) {
+        handleMessage(sender_psid, webhook_event.message);
+      } else if (webhook_event.postback) {
+        handlePostback(sender_psid, webhook_event.postback);
       }
-      
+
 
     });
 
@@ -55,7 +86,6 @@ app.get('/webhook', (req, res) => {
   console.log("hello, my name is app");
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "kieuchicong"
 
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -80,36 +110,77 @@ app.get('/webhook', (req, res) => {
 });
 
 // Handles messages events
-function handleMessage(sender_id, message) {
+function handleMessage(sender_psid, received_message) {
   let response;
 
-  // Check if the message contains text
-  if (message) {    
-
-    // Create the payload for a basic text message
+  // Checks if the message contains text
+  if (received_message.text) {
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
     response = {
-      "text": `You sent the message: "${message}"`
+      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
-  }  
-  
-  // Sends the response message
-  callSendAPI(sender_id, response);    
-
+  } else if (received_message.attachments) {
+    
+    // Get the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Is this the right picture?",
+            "subtitle": "Tap a button to answer.",
+            "image_url": attachment_url,
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Yes!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "No!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
+      }
+    }
+  }
+  callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  let response;
+
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === 'yes') {
+    response = { "text": "Thanks!" }
+  } else if (payload === 'no') {
+    response = { "text": "Oops, try sending another image." }
+  }
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
 
 }
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
+  // Construct the message body
   let request_body = {
     "recipient": {
       "id": sender_psid
     },
     "message": response
   }
+
   // Send the HTTP request to the Messenger Platform
   request({
     "uri": "https://graph.facebook.com/v3.3/me/messages",
@@ -118,13 +189,11 @@ function callSendAPI(sender_psid, response) {
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
-      console.log("body:",request_body);
       console.log('message sent!')
     } else {
       console.error("Unable to send message:" + err);
     }
   }); 
-  
 }
 
 setInterval(() => server.getConnections(
