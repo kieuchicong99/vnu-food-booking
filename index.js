@@ -162,9 +162,9 @@ function handlePostback(sender_psid, received_postback) {
           "template_type": "generic",
           "elements": [
             {
-              "title": "Chào mừng {{user_first_name}} đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
+              "title": "Chào mừng bạn đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
               "subtitle": "",
-              "image_url": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi5n9Xur83jAhUIEHwKHSdmD4QQjRx6BAgBEAU&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Froom-service_227324&psig=AOvVaw0DmnevctHWavHw7RpMd_XA&ust=1564051430166250",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "buttons": [{
                 "type": "postback",
                 "title": "Chọn món ăn",
