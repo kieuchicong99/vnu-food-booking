@@ -4,7 +4,10 @@
 const
   express = require('express'),
   bodyParser = require('body-parser'),
-  app = express().use(bodyParser.json()); // creates express http server
+  // app = express().use(bodyParser.json()); // creates express http server
+  const app = express();
+  app.use(bodyParser.urlencoded({ "extended": false }));
+  app.use(bodyParser.json());
 
 // Sets server port and logs message on success
 const server = app.listen(process.env.PORT || 9000, () => console.log('webhook is listening'));
@@ -23,13 +26,13 @@ app.post('/webhook', (req, res) => {
       // Gets the message. entry.messaging is an array, but 
       // will only ever contain one message, so we get index 0
       try {
-        console.log("VNU-ENTRY:",entry);
-        let webhook_event = entry.standby[0].message[0];
-        console.log("VNU-MES:",webhook_event);
+        console.log("VNU-ENTRY:", entry);
+        let webhook_event = entry.messaging[0];
+        console.log("VNU-MES:", webhook_event);
       } catch (error) {
-        console.log("VNU-ERROR:",error);        
+        console.log("VNU-ERROR:", error);
       }
-     
+
     });
 
     // Returns a '200 OK' response to all requests
@@ -87,13 +90,13 @@ server.on('connection', connection => {
 function shutDown() {
   console.log('Received kill signal, shutting down gracefully');
   server.close(() => {
-      console.log('Closed out remaining connections');
-      process.exit(0);
+    console.log('Closed out remaining connections');
+    process.exit(0);
   });
 
   setTimeout(() => {
-      console.error('Could not close connections in time, forcefully shutting down');
-      process.exit(1);
+    console.error('Could not close connections in time, forcefully shutting down');
+    process.exit(1);
   }, 10000);
 
   connections.forEach(curr => curr.end());
