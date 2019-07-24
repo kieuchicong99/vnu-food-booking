@@ -2,6 +2,7 @@
 
 // Imports dependencies and set up http server
 const  request = require('request');
+const PAGE_ACCESS_TOKEN = 'EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD'
 const  express = require('express'),
   bodyParser = require('body-parser'),
   // app = express().use(bodyParser.json()); // creates express http server
