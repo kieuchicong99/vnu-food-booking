@@ -28,8 +28,9 @@ app.post('/webhook', (req, res) => {
       try {
 
         // Gets the body of the webhook event
-        let webhook_event = entry.standby[0];
+        
         console.log('--->entry:', JSON.stringify(entry));
+        let webhook_event = entry.standby[0];
 
         // Get the sender PSID
         let sender_psid = webhook_event.sender.id;
