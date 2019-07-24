@@ -30,7 +30,7 @@ app.post('/webhook', (req, res) => {
         // Gets the body of the webhook event
 
         console.log('--->entry:', JSON.stringify(entry));
-        console.log('body.object:',body.object)
+        console.log('--->body:',JSON.stringify(body))
         let webhook_event;
         if (entry.messaging == undefined) {
           webhook_event = entry.standby[0];
