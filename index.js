@@ -5,7 +5,7 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   // app = express().use(bodyParser.json()); // creates express http server
-  var app = express();
+  app = express();
   app.use(bodyParser.urlencoded({ "extended": false }));
   app.use(bodyParser.json());
 
