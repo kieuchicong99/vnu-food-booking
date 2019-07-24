@@ -27,7 +27,8 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       try {
         console.log("VNU-ENTRY:", entry);
-        let webhook_event = entry.standby[0].message;
+        let webhook_event = entry.standby[0].message.text;
+        console.log("entry.standby[0]",JSON.stringify(entry.standby[0]));
         console.log("VNU-MES:", webhook_event);
       } catch (error) {
         console.log("VNU-ERROR:", error);
@@ -72,6 +73,40 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
+  let response;
+
+  // Check if the message contains text
+  if (received_message.text) {    
+
+    // Create the payload for a basic text message
+    response = {
+      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+    }
+  }  
+  
+  // Sends the response message
+  callSendAPI(sender_psid, response);    
+
+}
+
+// Handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+  let request_body = {
+    "recipient": {
+      "id": sender_psid
+    },
+    "message": response
+  }
+  
+}
 
 setInterval(() => server.getConnections(
   (err, connections) => console.log(`${connections} connections currently open`)
