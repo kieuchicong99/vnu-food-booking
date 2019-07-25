@@ -116,6 +116,7 @@ function handleMessage(sender_psid, received_message) {
         "type": "template",
         "payload": {
           "template_type": "list",
+          "top_element_style": "compact",
           "elements": [{
             "title": "Is this the right picture?",
             "subtitle": "Tap a button to answer.",
@@ -160,7 +161,7 @@ function handlePostback(sender_psid, received_postback) {
       "attachment": {
         "type": "template",
         "payload": {
-          "template_type": "generic",
+          "template_type": "list",
           "elements": [
             {
               "title": "Chào mừng bạn đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
