@@ -163,104 +163,22 @@ function handlePostback(sender_psid, received_postback) {
           "template_type": "generic",
           "elements": [
             {
-              "title": "Welcome!",
-              "image_url": "https://petersfancybrownhats.com/company_image.png",
-              "subtitle": "We have the right hat for everyone.",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://petersfancybrownhats.com/view?item=103",
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall",
-                "fallback_url": "https://petersfancybrownhats.com/"
+              "title": "Chào mừng bạn đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
+              "subtitle": "",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
+              "buttons": [{
+                "type": "postback",
+                "title": "Chọn món ăn",
+                "payload": "choose_dish",
               },
-              "buttons": [
-                {
-                  "type": "web_url",
-                  "url": "https://petersfancybrownhats.com",
-                  "title": "View Website"
-                },
-                {
-                  "type": "postback",
-                  "title": "Start Chatting",
-                  "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                }
-              ]
-            },
+              {
+                "type": "postback",
+                "title": "Chọn cửa hàng",
+                "payload": "choose_store",
+              }
 
-            {
-              "title": "Welcome!",
-              "image_url": "https://petersfancybrownhats.com/company_image.png",
-              "subtitle": "We have the right hat for everyone.",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://petersfancybrownhats.com/view?item=103",
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall",
-                "fallback_url": "https://petersfancybrownhats.com/"
-              },
-              "buttons": [
-                {
-                  "type": "web_url",
-                  "url": "https://petersfancybrownhats.com",
-                  "title": "View Website"
-                },
-                {
-                  "type": "postback",
-                  "title": "Start Chatting",
-                  "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                }
-              ]
-            },
-            {
-              "title": "Welcome!",
-              "image_url": "https://petersfancybrownhats.com/company_image.png",
-              "subtitle": "We have the right hat for everyone.",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://petersfancybrownhats.com/view?item=103",
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall",
-                "fallback_url": "https://petersfancybrownhats.com/"
-              },
-              "buttons": [
-                {
-                  "type": "web_url",
-                  "url": "https://petersfancybrownhats.com",
-                  "title": "View Website"
-                },
-                {
-                  "type": "postback",
-                  "title": "Start Chatting",
-                  "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                }
-              ]
-            },
-            {
-              "title": "Welcome!",
-              "image_url": "https://petersfancybrownhats.com/company_image.png",
-              "subtitle": "We have the right hat for everyone.",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://petersfancybrownhats.com/view?item=103",
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall",
-                "fallback_url": "https://petersfancybrownhats.com/"
-              },
-              "buttons": [
-                {
-                  "type": "web_url",
-                  "url": "https://petersfancybrownhats.com",
-                  "title": "View Website"
-                },
-                {
-                  "type": "postback",
-                  "title": "Start Chatting",
-                  "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                }
               ]
             }
-
-
           ]
         }
       }
