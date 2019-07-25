@@ -169,7 +169,7 @@ function handlePostback(sender_psid, received_postback) {
               "default_action": {
                 "type": "web_url",
                 "url": "https://www.facebook.com/messages/t/kieuchiconguet",
-                "messenger_extensions": true,
+                "messenger_extensions": false,
                 "webview_height_ratio": "tall",
                 "fallback_url": "https://www.facebook.com/kieuchiconguet"
               },
@@ -303,6 +303,8 @@ function callSendAPI(sender_psid, response) {
   }, (err, res, body) => {
     if (!err) {
       console.log('message sent!')
+      console.log('res:', res);
+      console.log('body_req:',body);
     } else {
       console.error("Unable to send message:" + err);
     }
