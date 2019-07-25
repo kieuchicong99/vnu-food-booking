@@ -170,11 +170,51 @@ function handlePostback(sender_psid, received_postback) {
                 "type": "postback",
                 "title": "Chọn món ăn",
                 "payload": "choose_dish",
-              },
-              {
+              }
+              ]
+            },
+            {
+              "title": "Rubic 8",
+              "subtitle": "",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
+              "buttons": [{
                 "type": "postback",
-                "title": "Chọn cửa hàng",
-                "payload": "choose_store",
+                "title": "Chọn món ăn",
+                "payload": "choose_dish",
+              }
+              ]
+            },
+            {
+              "title": "Mr Cây",
+              "subtitle": "",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
+              "buttons": [{
+                "type": "postback",
+                "title": "Chọn món ăn",
+                "payload": "choose_dish",
+              }
+
+              ]
+            },
+            {
+              "title": "Phủi Quán",
+              "subtitle": "",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
+              "buttons": [{
+                "type": "postback",
+                "title": "Chọn món ăn",
+                "payload": "choose_dish",
+              }
+              ]
+            },
+            {
+              "title": "Cơm ngon mẹ làm",
+              "subtitle": "",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
+              "buttons": [{
+                "type": "postback",
+                "title": "Chọn món ăn",
+                "payload": "choose_dish",
               }
 
               ]
