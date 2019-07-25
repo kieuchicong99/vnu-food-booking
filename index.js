@@ -169,7 +169,7 @@ function handlePostback(sender_psid, received_postback) {
               "default_action": {
                 "type": "web_url",
                 "url": "https://www.facebook.com/messages/t/kieuchiconguet",
-                "messenger_extensions": false,
+                "messenger_extensions": true,
                 "webview_height_ratio": "tall",
                 "fallback_url": "https://www.facebook.com/kieuchiconguet"
               },
