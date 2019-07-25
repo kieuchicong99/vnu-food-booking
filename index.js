@@ -154,7 +154,8 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
-  if (payload === 'choose_dish') {
+  if (payload ==='choose_dish') {
+    console.log("=> kieu chi cong kieu chi cong");
     response = {
       "attachment": {
         "type": "template",
@@ -222,7 +223,7 @@ function handlePostback(sender_psid, received_postback) {
     }
 
   }
-  if (payload === 'choose_store') {
+  if (payload ==='choose_store') {
     response = {
       "attachment": {
         "type": "template",

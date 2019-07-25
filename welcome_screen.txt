@@ -1,0 +1,19 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+"greeting":[
+  {
+    "locale":"default",
+    "text":"Xin chào {{user_first_name}}!"
+  }
+],
+"get_started":{
+    "payload":"start"
+  }
+}' "https://graph.facebook.com/v3.3/me/messenger_profile?access_token=EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD"
+
+
+curl -X GET "https://graph.facebook.com/v3.3/me/messenger_profile?fields=greeting,get_started&access_token=EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD"
+
+
+curl -X DELETE -H "Content-Type: application/json" -d '{
+  "fields": ["greeting"]
+}' "https://graph.facebook.com/v3.3/me/messenger_profile?access_token=EAAefv3Tk6usBAFHxV9SNO9MZCmeI0ZCBRPADt8P8GCJK0TA3rMQ55FyyDTxusfd7zY9qVvpy2BfnZBb2xMAgjEvjqyjRg1Y5LO6YKgpV09ZBha7DqiMGyftx7rH5ZCW0wZCqZBEbXL1EGD1RHyFZBxyLDtJLLZBJvQbaZADCZAg2VkOewZDZD"
