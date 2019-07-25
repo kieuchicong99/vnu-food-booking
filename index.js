@@ -101,11 +101,41 @@ function handleMessage(sender_psid, received_message) {
   let response;
 
   // Checks if the message contains text
-  if (received_message.text) {
+  let text = JSON.stringify(received_message.text);
+  if (text.includes('HELLO'|| text.includes('hi')|| text.includes('HI') || text.includes('chào') || text.includes('hello') || text.includes('chào bot') || text.includes('muốn') || text.includes('đặt') || text.includes('món')|| text.includes('mua') || text ==='đặt món' || text.includes('ĐẶT MÓN') || text.includes('dat mon') )){
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [
+            {
+              "title": "Bạn muốn đặt món đúng không?",
+              "subtitle": "",
+              "buttons": [{
+                "type": "postback",
+                "title": "OK",
+                "payload": "NLP_OK",
+              },
+              {
+                "type": "postback",
+                "title": "No",
+                "payload": "NLP_NO",
+              }
+
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }  
+  
+  else if (received_message.text) {
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      "text": `You sent the message: "${received_message.text}"`
     }
   } else if (received_message.attachments) {
 
@@ -154,6 +184,10 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
+  if (payload === 'NLP_NO') {
+    response = { "text": "Không sao đâu\n Nếu cần hãy gõ \"đặt món\" để gọi tôi nhé" }
+  }
+
 
   if (payload === 'choose_store') {
     response = {
@@ -250,7 +284,7 @@ function handlePostback(sender_psid, received_postback) {
   }
 
 
-  if (payload === 'start') {
+  if (payload === 'start' || payload ==='NLP_OK') {
     response = {
       "attachment": {
         "type": "template",
