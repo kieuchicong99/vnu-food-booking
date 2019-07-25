@@ -102,7 +102,7 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   let text = JSON.stringify(received_message.text);
-  if (text.includes('HELLO'|| text.includes('hi')|| text.includes('HI') || text.includes('chào') || text.includes('hello') || text.includes('chào bot') || text.includes('muốn') || text.includes('đặt') || text.includes('món')|| text.includes('mua') || text ==='đặt món' || text.includes('ĐẶT MÓN') || text.includes('dat mon') )){
+  if (text.includes('HELLO')|| text.includes('hi')|| text.includes('HI') || text.includes('chào') || text.includes('hello') || text.includes('chào bot') || text.includes('muốn') || text.includes('đặt') || text.includes('món')|| text.includes('mua') || text ==='đặt món' || text.includes('ĐẶT MÓN') || text.includes('dat mon') ){
     response = {
       "attachment": {
         "type": "template",
