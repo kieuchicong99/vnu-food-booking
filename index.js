@@ -163,6 +163,29 @@ function handlePostback(sender_psid, received_postback) {
           "template_type": "generic",
           "elements": [
             {
+              "title":"Welcome!",
+              "image_url":"http://icons.iconarchive.com/icons/paomedia/small-n-flat/256/shop-icon.png",
+              "subtitle":"We have the right hat for everyone.",
+              "default_action": {
+                "type": "web_url",
+                "url": "https://www.facebook.com/messages/t/kieuchiconguet",
+                "messenger_extensions": false,
+                "webview_height_ratio": "tall",
+                "fallback_url": "https://www.facebook.com/kieuchiconguet"
+              },
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://petersfancybrownhats.com",
+                  "title":"View Website"
+                },{
+                  "type":"postback",
+                  "title":"Start Chatting",
+                  "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                }              
+              ]      
+            },
+            {
               "title": "Shopee",
               "subtitle": "",
               "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
