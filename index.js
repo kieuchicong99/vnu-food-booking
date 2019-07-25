@@ -155,7 +155,6 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Oops, try sending another image." }
   }
   if (payload ==='choose_dish') {
-    console.log("=> kieu chi cong kieu chi cong");
     response = {
       "attachment": {
         "type": "template",
@@ -166,15 +165,15 @@ function handlePostback(sender_psid, received_postback) {
             {
               "title": "Classic T-Shirt Collection",
               "subtitle": "See all our colors",
-              "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "buttons": [
                 {
                   "title": "View",
                   "type": "web_url",
-                  "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                   "messenger_extensions": true,
                   "webview_height_ratio": "tall",
-                  "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
                 }
               ]
             },
@@ -183,30 +182,30 @@ function handlePostback(sender_psid, received_postback) {
               "subtitle": "See all our colors",
               "default_action": {
                 "type": "web_url",
-                "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                 "messenger_extensions": false,
                 "webview_height_ratio": "tall"
               }
             },
             {
               "title": "Classic Blue T-Shirt",
-              "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "subtitle": "100% Cotton, 200% Comfortable",
               "default_action": {
                 "type": "web_url",
-                "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
+                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                 "messenger_extensions": true,
                 "webview_height_ratio": "tall",
-                "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
               },
               "buttons": [
                 {
                   "title": "Shop Now",
                   "type": "web_url",
-                  "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                   "messenger_extensions": true,
                   "webview_height_ratio": "tall",
-                  "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
                 }
               ]
             }
@@ -234,15 +233,15 @@ function handlePostback(sender_psid, received_postback) {
             {
               "title": "Classic T-Shirt Collection",
               "subtitle": "See all our colors",
-              "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "buttons": [
                 {
                   "title": "View",
                   "type": "web_url",
-                  "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                   "messenger_extensions": true,
                   "webview_height_ratio": "tall",
-                  "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
                 }
               ]
             },
@@ -251,30 +250,30 @@ function handlePostback(sender_psid, received_postback) {
               "subtitle": "See all our colors",
               "default_action": {
                 "type": "web_url",
-                "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                 "messenger_extensions": false,
                 "webview_height_ratio": "tall"
               }
             },
             {
               "title": "Classic Blue T-Shirt",
-              "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "subtitle": "100% Cotton, 200% Comfortable",
               "default_action": {
                 "type": "web_url",
-                "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
+                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                 "messenger_extensions": true,
                 "webview_height_ratio": "tall",
-                "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
               },
               "buttons": [
                 {
                   "title": "Shop Now",
                   "type": "web_url",
-                  "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
                   "messenger_extensions": true,
                   "webview_height_ratio": "tall",
-                  "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
                 }
               ]
             }
