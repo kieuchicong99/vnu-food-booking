@@ -169,14 +169,14 @@ function handlePostback(sender_psid, received_postback) {
               "default_action": {
                 "type": "web_url",
                 "url": "https://www.facebook.com/messages/t/kieuchiconguet",
-                "messenger_extensions": false,
+                "messenger_extensions": true,
                 "webview_height_ratio": "tall",
                 "fallback_url": "https://www.facebook.com/kieuchiconguet"
               },
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://petersfancybrownhats.com",
+                  "url":"https://www.facebook.com/kieuchiconguet",
                   "title":"View Website"
                 },{
                   "type":"postback",
