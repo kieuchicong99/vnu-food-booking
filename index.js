@@ -154,74 +154,7 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }
-  if (payload ==='choose_dish') {
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "list",
-          "top_element_style": "compact",
-          "elements": [
-            {
-              "title": "Classic T-Shirt Collection",
-              "subtitle": "See all our colors",
-              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-              "buttons": [
-                {
-                  "title": "View",
-                  "type": "web_url",
-                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-                  "messenger_extensions": true,
-                  "webview_height_ratio": "tall",
-                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
-                }
-              ]
-            },
-            {
-              "title": "Classic White T-Shirt",
-              "subtitle": "See all our colors",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall"
-              }
-            },
-            {
-              "title": "Classic Blue T-Shirt",
-              "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-              "subtitle": "100% Cotton, 200% Comfortable",
-              "default_action": {
-                "type": "web_url",
-                "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-                "messenger_extensions": true,
-                "webview_height_ratio": "tall",
-                "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
-              },
-              "buttons": [
-                {
-                  "title": "Shop Now",
-                  "type": "web_url",
-                  "url": "https://image.flaticon.com/icons/png/512/227/227324.png",
-                  "messenger_extensions": true,
-                  "webview_height_ratio": "tall",
-                  "fallback_url": "https://image.flaticon.com/icons/png/512/227/227324.png"
-                }
-              ]
-            }
-          ],
-          "buttons": [
-            {
-              "title": "View More",
-              "type": "postback",
-              "payload": "payload"
-            }
-          ]
-        }
-      }
-    }
-
-  }
+  
   if (payload ==='choose_store') {
     response = {
       "attachment": {
@@ -289,6 +222,8 @@ function handlePostback(sender_psid, received_postback) {
       }
     }
   }
+
+  
   if (payload === 'start') {
     response = {
       "attachment": {
