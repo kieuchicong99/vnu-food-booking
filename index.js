@@ -160,7 +160,7 @@ function handlePostback(sender_psid, received_postback) {
       "attachment": {
         "type": "template",
         "payload": {
-          "template_type": "list",
+          "template_type": "generic",
           "elements": [
             {
               "title": "Shopee",
