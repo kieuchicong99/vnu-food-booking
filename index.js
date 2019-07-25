@@ -116,7 +116,6 @@ function handleMessage(sender_psid, received_message) {
         "type": "template",
         "payload": {
           "template_type": "list",
-          "top_element_style": "compact",
           "elements": [{
             "title": "Is this the right picture?",
             "subtitle": "Tap a button to answer.",
@@ -164,7 +163,7 @@ function handlePostback(sender_psid, received_postback) {
           "template_type": "list",
           "elements": [
             {
-              "title": "Chào mừng bạn đã đến với \nhệ thống đặt đồ ăn VNU FOOD BOOKING :v",
+              "title": "Shopee",
               "subtitle": "",
               "image_url": "https://image.flaticon.com/icons/png/512/227/227324.png",
               "buttons": [{
@@ -172,6 +171,7 @@ function handlePostback(sender_psid, received_postback) {
                 "title": "Chọn món ăn",
                 "payload": "choose_dish",
               }
+
               ]
             },
             {
